@@ -187,6 +187,10 @@ ol {
   color: white;
 }
 
+.search-form__label .search-form__textfield:active {
+  border: 1px solid white;
+}
+
 .search-form__checkbox-list {
   display: flex;
   flex-direction: row;
@@ -196,6 +200,7 @@ ol {
 .search-form__checkbox-list .search-form__label {
   border-top: none;
   border-bottom: none;
+  cursor: pointer;
 }
 
 .search-form__pseudo-checkbox {
@@ -212,6 +217,7 @@ ol {
   font-size: inherit;
   font-family: inherit;
   color: white;
+  cursor: pointer;
 }
 
 .search-form__submit-button {
@@ -233,15 +239,18 @@ ol {
   margin: 1px;
 }
 
-/* При использовании focus-visible: требования для focus не срабатывают */
+/* 
+  При использовании focus и focus-visible для input text мы видим,
+  что рамка появляется даже при работе с мышкой, хотя focus outline: none
+*/
 
-/* .search-form__textfield:focus {
+.search-form__textfield:focus {
   outline: none;
-} */
+}
 
-/* .search-form__label:focus-visible {
-  outline: 3px solid pink;
-} */
+.search-form__textfield:focus-visible {
+  outline: 1px solid white;
+}
 
 .search-form__checkbox-list .search-form__label:hover {
   text-decoration: underline;
@@ -260,7 +269,8 @@ ol {
 }
 
 .button:focus-visible {
-  outline: 1px solid blue;
+  outline: 1px solid white;
+  outline-offset: 1px;
 }
 
 /* SEVENTH POINT */
@@ -273,14 +283,27 @@ ol {
   background-color: #545050;
 }
 
-.content__list-item:focus {
+.content__card-link:focus {
   outline: none;
 }
 
-.content__list-item:focus-visible {
-  outline: 2px solid blue;
+.content__card-link:focus-visible {
+  outline: 1px solid white;
 }
 
 .content__card-link_current {
   background-color: #545050;
 }
+
+/* 
+  При focus-within мы получаем нужную рамку для чекбокса, но он работает и при обычном фокусе с мышкой
+  При использовании focus и focus-visible рамка вокруг .search-form__label не появялется   
+ */
+
+/* .search-form__label > .search-form__checkbox:focus {
+  outline: none;
+} */
+
+/* .search-form__label:focus-within {
+  outline: 1px solid pink;
+} */
